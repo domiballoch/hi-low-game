@@ -9,7 +9,7 @@ public class Outcomes {
     @Autowired
     private User user;
 
-    protected int win() throws Exception {
+    protected int win() {
         // 5 correct guesses awards 500
         System.out.println("Well done, you win the BRUCEY BONUS of $500");
         user.setBalance(user.getBalance() + 500);
@@ -18,7 +18,7 @@ public class Outcomes {
         return user.getBalance();
     }
 
-    protected int correct() throws Exception {
+    protected int correct() {
         // correct guess awards 10
         user.setBalance(user.getBalance() + 10);
         System.out.println("You won $10, your balance is now: " + user.getBalance());
@@ -33,7 +33,7 @@ public class Outcomes {
         return user.getBalance();
     }
 
-    protected int lose() throws Exception {
+    protected int lose() {
         // wrong guess deducts 100
         System.out.println("Game over! You lost $100");
         user.setBalance(user.getBalance() - 100);
@@ -45,11 +45,6 @@ public class Outcomes {
         } else {
             user.playAgain();
         }
-
         return user.getBalance();
     }
-
-    //TODO:Add java doc comments
-    //TODO:Add constants class
-    //TODO:Handle exceptions and close resource streams or use try with resources
 }

@@ -6,20 +6,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class Helper {
 
+    private static final String CONTINUE = "Well done! Lets continue...";
+
     @Autowired
     private Outcomes outcomes;
 
     @Autowired
     private User user;
 
-    protected void guessLogic() throws Exception {
+    /**
+     * Guess logic - win, lose
+     */
+    protected void guessLogic() {
         // guess logic
         if (user.getGuess() >= user.getRnList().get(0) && user.getRnList().get(1) >= user.getRnList().get(0)) {
-            System.out.println("Well done! Lets continue...");
+            System.out.println(CONTINUE);
             outcomes.correct();
         }
         if (user.getGuess() <= user.getRnList().get(0) && user.getRnList().get(1) <= user.getRnList().get(0)) {
-            System.out.println("Well done! Lets continue...");
+            System.out.println(CONTINUE);
             outcomes.correct();
         }
         if (user.getGuess() == user.getRnList().get(1)) {

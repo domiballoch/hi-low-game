@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,7 +33,10 @@ public class User {
     private BufferedReader buffer = new BufferedReader(inputStream);
     protected ArrayList<Integer> rnList = new ArrayList<>();
 
-    public void gameSetup() throws Exception {
+    /**
+     * Setup game with 5 random cards and welcome message
+     */
+    public void gameSetup() {
         // first create 5 random numbers in a list
         int count = 0;
         do {
@@ -55,7 +59,10 @@ public class User {
         userInput();
     }
 
-    private void userInput() throws Exception {
+    /**
+     * User input logic
+     */
+    private void userInput() {
         if (guessCount < 5) {
             // display starting number
             System.out.println("\nThe number is: " + rnList.get(0));
@@ -83,12 +90,27 @@ public class User {
         } else {
             playAgain();
         }
-
     }
 
-    protected void playAgain() throws Exception {
+    /**
+     * Play again logic yes/no
+     */
+    protected void playAgain() {
         System.out.println("Play again? y/n");
-        play = buffer.readLine();
+        try {
+            play = buffer.readLine();
+        } catch (IOException e) {
+            log.error("Error reading buffered line {}", e.getMessage());
+        } finally {
+            if(buffer !=null || inputStream != null) {
+                try {
+                    buffer.close();
+                    inputStream.close();
+                } catch (IOException e) {
+                    log.error("Error closing resources {}", e.getMessage());
+                }
+            }
+        }
 
         // if no then close program
         if (play.equalsIgnoreCase("n")) {
