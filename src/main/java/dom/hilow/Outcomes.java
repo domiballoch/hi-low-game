@@ -48,4 +48,8 @@ public class Outcomes {
 
         return user.getBalance();
     }
+
+    //TODO:Add java doc comments
+    //TODO:Add constants class
+    //TODO:Handle exceptions and close resource streams or use try with resources
 }
