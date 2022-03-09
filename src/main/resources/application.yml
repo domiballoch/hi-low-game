@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: hi-low
+
+log:
+  service: ${spring.application.name}
+  appender: CONSOLE
+  level: DEBUG
+
