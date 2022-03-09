@@ -10,7 +10,7 @@ public class Outcomes {
     private User user;
 
     protected int win() throws Exception {
-        // 10 correct guesses awards 1000
+        // 5 correct guesses awards 500
         System.out.println("Well done, you win the BRUCEY BONUS of $500");
         user.setBalance(user.getBalance() + 500);
         System.out.println("Your balance is now: " + user.getBalance());
@@ -26,7 +26,7 @@ public class Outcomes {
     }
 
     protected int match() {
-        // correct guess awards 100
+        // correct match awards 50
         System.out.println("It's also a match! A further $50 has been added to your balance");
         user.setBalance(user.getBalance() + 50);
         System.out.println("Your balance is now: " + user.getBalance());
